@@ -1,0 +1,68 @@
+<html>
+
+<head>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+
+  <link rel="stylesheet" href="styles.css">
+  <script src="dist/app.js"></script>
+</head>
+
+<body>
+
+  <div ng-app="myApp">
+
+    <div ng-controller="mainController">
+
+      <div class="container">
+
+        <div ng-cloak class="alert alert-danger" ng-show="error">
+          {{error}}
+        </div>
+
+        <div class="center margin-20" ng-show="!years && !error">
+          <i class="fa fa-circle-o-notch fa-spin fa-3x"></i>
+        </div>
+
+        <div ng-show="years" class="panel-group" id="accordion">
+
+          <div ng-cloak ng-repeat="year in years track by year.year" class="panel panel-default">
+            <div class="panel-heading">
+              <div ng-cloak class="panel-title">
+                <div class="one-third-width inline-block">
+                  <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{$index+1}}">
+		  {{year.year}}
+    </a>
+                </div>
+                <div class="one-third-width inline-block">Attendance: {{year.students.length}}</div>
+                <div class="one-third-width inline-block">GPA: {{year.averageGPA.toFixed(2)}}</div>
+                </h4>
+              </div>
+              <div id="collapse{{$index+1}}" class="panel-collapse collapse">
+                <div class="panel-body">
+                  <table width="50%">
+                    <tr>
+                      <th>Name</th>
+                      <th>GPA</th>
+                    </tr>
+                    <tr ng-repeat="student in year.students">
+                      <td>{{student.Name}}</td>
+                      <td>{{student.GPARecord[year.year].toFixed(2)}}</td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+</body>
+
+</html>

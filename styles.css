@@ -1,0 +1,19 @@
+.one-third-width {
+
+  width: 33%;
+}
+
+.inline-block {
+
+  display: inline-block;
+}
+
+.center {
+
+  text-align: center;
+}
+
+.margin-20 {
+
+  margin: 20px;
+}
